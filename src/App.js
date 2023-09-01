@@ -1,37 +1,22 @@
-import { PlusOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import {
   Button,
-  Cascader,
   Checkbox,
-  DatePicker,
   Form,
   Input,
-  InputNumber,
-  Radio,
   Select,
-  Slider,
-  Switch,
-  TreeSelect,
-  Upload,
   Col,
   Row,
   Typography
 } from 'antd';
-const { RangePicker } = DatePicker;
-const { TextArea } = Input;
+
 const { Title } = Typography;
-const normFile = (e) => {
-  if (Array.isArray(e)) {
-    return e;
-  }
-  return e?.fileList;
-};
+
 const FormDisabledDemo = () => {
   const [componentDisabled, setComponentDisabled] = useState(false);
   return (
     <>
-  
+
       <Form
         labelCol={{
           span: 4,
@@ -45,8 +30,8 @@ const FormDisabledDemo = () => {
           maxWidth: 600,
         }}
       >
-       <Form.Item label=" ">
-       <Title>Pizzeria de Pelu</Title>
+        <Form.Item label=" ">
+          <Title>Pizzeria de Pelu</Title>
         </Form.Item>
 
         <Form.Item label="Nombre" required>
@@ -60,34 +45,34 @@ const FormDisabledDemo = () => {
           </Select>
         </Form.Item>
 
-          <Form.Item label="Ingredientes">
-          
-                    <Checkbox.Group
-                            style={{
-                              width: '100%',
-                            }}
-                    >
-              <Row>
-                <Col span={8}>
-                  <Checkbox value="Cebolla">Cebolla</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="Tocino">Tocino</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="Jamon">+ Jamon</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="Pina">Piña</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="Carne">Carne</Checkbox>
-                </Col>
-                <Col span={8}>
-                  <Checkbox value="Aceitunas">Aceitunas</Checkbox>
-                </Col>
-              </Row>
-            </Checkbox.Group>
+        <Form.Item label="Ingredientes">
+
+          <Checkbox.Group
+            style={{
+              width: '100%',
+            }}
+          >
+            <Row>
+              <Col span={8}>
+                <Checkbox value="Cebolla">Cebolla</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Tocino">Tocino</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Jamon">+ Jamon</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Pina">Piña</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Carne">Carne</Checkbox>
+              </Col>
+              <Col span={8}>
+                <Checkbox value="Aceitunas">Aceitunas</Checkbox>
+              </Col>
+            </Row>
+          </Checkbox.Group>
 
         </Form.Item>
 
@@ -97,12 +82,12 @@ const FormDisabledDemo = () => {
 
 
         <Form.Item label="Factura">
-          <Input placeholder='Nombre' disabled/>
+          <Input placeholder='Nombre' disabled />
           <Input placeholder='Tamaño de pizza' disabled />
-          <Input placeholder='Total de ingredientes extra' disabled/>
-          <Input placeholder='Costo de la pizza' disabled/>
-          <Input placeholder='Costo de los toppings extra' disabled/>
-          <Input placeholder='Total de la pizza' disabled/>
+          <Input placeholder='Total de ingredientes extra' disabled />
+          <Input placeholder='Costo de la pizza' disabled />
+          <Input placeholder='Costo de los toppings extra' disabled />
+          <Input placeholder='Total de la pizza' disabled />
         </Form.Item>
 
       </Form>
