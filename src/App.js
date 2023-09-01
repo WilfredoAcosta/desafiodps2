@@ -49,10 +49,10 @@ const FormDisabledDemo = () => {
        <Title>Pizzeria de Pelu</Title>
         </Form.Item>
 
-        <Form.Item label="Nombre">
+        <Form.Item label="Nombre" required>
           <Input />
         </Form.Item>
-        <Form.Item label="Tamaño">
+        <Form.Item label="Tamaño" required>
           <Select>
             <Select.Option value="demo">Pizza personal</Select.Option>
             <Select.Option value="demo">Pizza mediana</Select.Option>
@@ -93,6 +93,16 @@ const FormDisabledDemo = () => {
 
         <Form.Item label="Cotizar">
           <Button>Submit</Button>
+        </Form.Item>
+
+
+        <Form.Item label="Factura">
+          <Input placeholder='Nombre' disabled/>
+          <Input placeholder='Tamaño de pizza' disabled />
+          <Input placeholder='Total de ingredientes extra' disabled/>
+          <Input placeholder='Costo de la pizza' disabled/>
+          <Input placeholder='Costo de los toppings extra' disabled/>
+          <Input placeholder='Total de la pizza' disabled/>
         </Form.Item>
 
       </Form>
