@@ -14,9 +14,13 @@ import {
   Switch,
   TreeSelect,
   Upload,
+  Col,
+  Row,
+  Typography
 } from 'antd';
 const { RangePicker } = DatePicker;
 const { TextArea } = Input;
+const { Title } = Typography;
 const normFile = (e) => {
   if (Array.isArray(e)) {
     return e;
@@ -41,7 +45,10 @@ const FormDisabledDemo = () => {
           maxWidth: 600,
         }}
       >
-       
+       <Form.Item label=" ">
+       <Title>Pizzeria de Pelu</Title>
+        </Form.Item>
+
         <Form.Item label="Nombre">
           <Input />
         </Form.Item>
@@ -53,9 +60,39 @@ const FormDisabledDemo = () => {
           </Select>
         </Form.Item>
 
-        
-        <Form.Item label="Button">
-          <Button>Button</Button>
+          <Form.Item label="Ingredientes">
+          
+                    <Checkbox.Group
+                            style={{
+                              width: '100%',
+                            }}
+                    >
+              <Row>
+                <Col span={8}>
+                  <Checkbox value="Cebolla">Cebolla</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Tocino">Tocino</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Jamon">+ Jamon</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Pina">Piña</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Carne">Carne</Checkbox>
+                </Col>
+                <Col span={8}>
+                  <Checkbox value="Aceitunas">Aceitunas</Checkbox>
+                </Col>
+              </Row>
+            </Checkbox.Group>
+
+        </Form.Item>
+
+        <Form.Item label="Cotizar">
+          <Button>Submit</Button>
         </Form.Item>
 
       </Form>
