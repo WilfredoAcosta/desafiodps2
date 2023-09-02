@@ -9,11 +9,31 @@ import {
   Row,
   Typography
 } from 'antd';
+import { pizzas, ingredientes } from './utils/data';
 
 const { Title } = Typography;
 
 const FormDisabledDemo = () => {
-  const [componentDisabled, setComponentDisabled] = useState(false);
+
+  const [conteoIngredientes, setConteoIngredientes] = useState(0);
+  const [nombre, setNombre] = useState('');
+  const [tipoPizza, setTipoPizza] = useState('');
+  const [costoPizza, setCostoPizza] = useState(0);
+  const [totalPagar, setTotalPagar] = useState(0);
+  const [costoExtras, setCostoExtras] = useState(0);
+
+  const CalcularTotalPagar = () => {
+
+  }
+
+  const AgregadoIngrediente = (event) => {
+    if (event.target.checked) {
+      setConteoIngredientes(conteoIngredientes + 1)
+    } else {
+      setConteoIngredientes(conteoIngredientes - 1)
+    }
+  }
+
   return (
     <>
 
@@ -25,23 +45,25 @@ const FormDisabledDemo = () => {
           span: 14,
         }}
         layout="horizontal"
-        disabled={componentDisabled}
+        disabled={false}
         style={{
           maxWidth: 600,
         }}
       >
         <Form.Item label=" ">
-          <Title>Pizzeria de Pelu</Title>
+          <Title>Pizzeria de "La Italiana"</Title>
         </Form.Item>
 
-        <Form.Item label="Nombre" required>
+        <Form.Item label="Nombre" onChange={(e) => {
+          setNombre(e.target.value)
+        }} required>
           <Input />
         </Form.Item>
         <Form.Item label="Tamaño" required>
           <Select>
-            <Select.Option value="demo">Pizza personal</Select.Option>
-            <Select.Option value="demo">Pizza mediana</Select.Option>
-            <Select.Option value="demo">Pizza grande</Select.Option>
+            {pizzas.map(e => (
+              <Select.Option value={e.nombre}>{e.nombre}</Select.Option>
+            ))}
           </Select>
         </Form.Item>
 
@@ -53,41 +75,28 @@ const FormDisabledDemo = () => {
             }}
           >
             <Row>
-              <Col span={8}>
-                <Checkbox value="Cebolla">Cebolla</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Tocino">Tocino</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Jamon">+ Jamon</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Pina">Piña</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Carne">Carne</Checkbox>
-              </Col>
-              <Col span={8}>
-                <Checkbox value="Aceitunas">Aceitunas</Checkbox>
-              </Col>
+              {ingredientes.map(e => (
+                <Col span={8}>
+                  <Checkbox value={e} onChange={(event) => AgregadoIngrediente(event)}>{e}</Checkbox>
+                </Col>
+              ))}
             </Row>
           </Checkbox.Group>
 
         </Form.Item>
 
         <Form.Item label="Cotizar">
-          <Button>Submit</Button>
+          <Button onClick={() => CalcularTotalPagar()}>Comprar</Button>
         </Form.Item>
 
 
         <Form.Item label="Factura">
-          <Input placeholder='Nombre' disabled />
-          <Input placeholder='Tamaño de pizza' disabled />
-          <Input placeholder='Total de ingredientes extra' disabled />
-          <Input placeholder='Costo de la pizza' disabled />
-          <Input placeholder='Costo de los toppings extra' disabled />
-          <Input placeholder='Total de la pizza' disabled />
+          <Input placeholder={'Nombre: ' + nombre} disabled />
+          <Input placeholder={'Tamaño de pizza: ' + tipoPizza} disabled />
+          <Input placeholder={'Total de ingredientes extra: ' + conteoIngredientes} disabled />
+          <Input placeholder={'Costo de la pizza: ' + costoPizza} disabled />
+          <Input placeholder={'Costo de los toppings extra: ' + costoExtras} disabled />
+          <Input placeholder={'Total de la pizza: ' + totalPagar} disabled />
         </Form.Item>
 
       </Form>
