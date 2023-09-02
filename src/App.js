@@ -21,6 +21,7 @@ const FormDisabledDemo = () => {
   const [costoPizza, setCostoPizza] = useState(0);
   const [totalPagar, setTotalPagar] = useState(0);
   const [costoExtras, setCostoExtras] = useState(0);
+  const [form] = Form.useForm();
 
   const CalcularTotalPagar = () => {
 
@@ -36,8 +37,12 @@ const FormDisabledDemo = () => {
 
   return (
     <>
-
+      <center>
+        <Title>Pizzeria de "La Italiana"</Title>
+      </center>
       <Form
+        form={form}
+        name="control-ref"
         labelCol={{
           span: 4,
         }}
@@ -50,17 +55,22 @@ const FormDisabledDemo = () => {
           maxWidth: 600,
         }}
       >
-        <Form.Item label=" ">
-          <Title>Pizzeria de "La Italiana"</Title>
-        </Form.Item>
 
-        <Form.Item label="Nombre" onChange={(e) => {
+        <Form.Item label="Nombre" name="Nombre" onChange={(e) => {
           setNombre(e.target.value)
-        }} required>
+        }} rules={[
+          {
+            required: true,
+          },
+        ]}>
           <Input />
         </Form.Item>
-        <Form.Item label="Tamaño" required>
-          <Select>
+        <Form.Item label="Tamaño" name="Tamaño" rules={[
+          {
+            required: true,
+          },
+        ]}>
+          <Select onChange={(e) => setTipoPizza(e)}>
             {pizzas.map(e => (
               <Select.Option value={e.nombre}>{e.nombre}</Select.Option>
             ))}
@@ -85,12 +95,27 @@ const FormDisabledDemo = () => {
 
         </Form.Item>
 
-        <Form.Item label="Cotizar">
+        <Form.Item label="Cotizar" htmlType="submit">
           <Button onClick={() => CalcularTotalPagar()}>Comprar</Button>
         </Form.Item>
+      </Form>
+      <center>
+        <Title>Detalle Factura:</Title>
+      </center>
 
-
-        <Form.Item label="Factura">
+      <Form
+        labelCol={{
+          span: 4,
+        }}
+        wrapperCol={{
+          span: 14,
+        }}
+        layout="horizontal"
+        disabled={false}
+        style={{
+          maxWidth: 800,
+        }}>
+        <Form.Item>
           <Input placeholder={'Nombre: ' + nombre} disabled />
           <Input placeholder={'Tamaño de pizza: ' + tipoPizza} disabled />
           <Input placeholder={'Total de ingredientes extra: ' + conteoIngredientes} disabled />
@@ -98,8 +123,8 @@ const FormDisabledDemo = () => {
           <Input placeholder={'Costo de los toppings extra: ' + costoExtras} disabled />
           <Input placeholder={'Total de la pizza: ' + totalPagar} disabled />
         </Form.Item>
-
       </Form>
+
     </>
   );
 };
