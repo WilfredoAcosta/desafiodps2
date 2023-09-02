@@ -21,10 +21,26 @@ const FormDisabledDemo = () => {
   const [costoPizza, setCostoPizza] = useState(0);
   const [totalPagar, setTotalPagar] = useState(0);
   const [costoExtras, setCostoExtras] = useState(0);
+  const [factor, setFactor] = useState(0);
   const [form] = Form.useForm();
 
   const CalcularTotalPagar = () => {
-
+    pizzas.forEach(pizza => {
+      if (tipoPizza === pizza.nombre) {
+        if (conteoIngredientes !== 0) {
+          if (conteoIngredientes > 4) {
+            setFactor(pizza.adicional[3])
+            setCostoExtras(factor * conteoIngredientes)
+          } else {
+            setFactor(pizza.adicional[conteoIngredientes - 1])
+            setCostoExtras((pizza.adicional[conteoIngredientes - 1] * conteoIngredientes))
+          }
+        } else {
+          setFactor(0)
+          setCostoExtras(0)
+        }
+      }
+    });
   }
 
   const AgregadoIngrediente = (event) => {
@@ -129,15 +145,19 @@ const FormDisabledDemo = () => {
           </Form.Item>
 
           <Form.Item label="Costo de la pizza">
-            <Input placeholder={'$'+costoPizza} disabled />
+            <Input placeholder={'$' + costoPizza} disabled />
+          </Form.Item>
+
+          <Form.Item label="Valor por cada ingrediente adicional">
+            <Input placeholder={'$' + factor} disabled />
           </Form.Item>
 
           <Form.Item label="Costo de los toppings extra">
-            <Input placeholder={'$'+costoExtras} disabled />
+            <Input placeholder={'$' + costoExtras} disabled />
           </Form.Item>
 
           <Form.Item label="Total de la pizza">
-            <Input placeholder={'$'+totalPagar} disabled />
+            <Input placeholder={'$' + totalPagar} disabled />
           </Form.Item>
 
         </Form.Item>
