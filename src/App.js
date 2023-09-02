@@ -115,15 +115,16 @@ const FormDisabledDemo = () => {
         style={{
           maxWidth: 800,
         }}>
-        <Form.Item>
-          <Input placeholder={'Nombre: ' + nombre} disabled />
-          <Input placeholder={'Tamaño de pizza: ' + tipoPizza} disabled />
-          <Input placeholder={'Total de ingredientes extra: ' + conteoIngredientes} disabled />
-          <Input placeholder={'Costo de la pizza: ' + costoPizza} disabled />
-          <Input placeholder={'Costo de los toppings extra: ' + costoExtras} disabled />
-          <Input placeholder={'Total de la pizza: ' + totalPagar} disabled />
-        </Form.Item>
+          <Form.Item>
+            <Input placeholder={'Nombre: ' + nombre} disabled />
+            <Input placeholder={'Tamaño de pizza: ' + tipoPizza} disabled />
+            <Input placeholder={'Total de ingredientes extra: ' + conteoIngredientes} disabled />
+            <Input placeholder={'Costo de la pizza: ' + costoPizza} disabled />
+            <Input placeholder={'Costo de los toppings extra: ' + costoExtras} disabled />
+            <Input placeholder={'Total de la pizza: ' + totalPagar} disabled />
+          </Form.Item>
       </Form>
+
 
     </>
   );
