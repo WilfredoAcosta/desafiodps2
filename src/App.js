@@ -129,15 +129,15 @@ const FormDisabledDemo = () => {
           </Form.Item>
 
           <Form.Item label="Costo de la pizza">
-            <Input placeholder={costoPizza} disabled />
+            <Input placeholder={'$'+costoPizza} disabled />
           </Form.Item>
 
           <Form.Item label="Costo de los toppings extra">
-            <Input placeholder={costoExtras} disabled />
+            <Input placeholder={'$'+costoExtras} disabled />
           </Form.Item>
 
           <Form.Item label="Total de la pizza">
-            <Input placeholder={totalPagar} disabled />
+            <Input placeholder={'$'+totalPagar} disabled />
           </Form.Item>
 
         </Form.Item>
