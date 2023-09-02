@@ -27,6 +27,7 @@ const FormDisabledDemo = () => {
   const CalcularTotalPagar = () => {
     pizzas.forEach(pizza => {
       if (tipoPizza === pizza.nombre) {
+        setCostoPizza(pizza.precio)
         if (conteoIngredientes !== 0) {
           if (conteoIngredientes > 4) {
             setFactor(pizza.adicional[3])
@@ -40,6 +41,7 @@ const FormDisabledDemo = () => {
           setCostoExtras(0)
         }
       }
+      setTotalPagar(costoPizza + costoExtras)
     });
   }
 
