@@ -25,6 +25,10 @@ const FormDisabledDemo = () => {
   const [form] = Form.useForm();
 
   const CalcularTotalPagar = () => {
+    setTotalPagar(costoPizza + costoExtras)
+  }
+
+  const ActualizarData = () => {
     pizzas.forEach(pizza => {
       if (tipoPizza === pizza.nombre) {
         setCostoPizza(pizza.precio)
@@ -41,7 +45,6 @@ const FormDisabledDemo = () => {
           setCostoExtras(0)
         }
       }
-      setTotalPagar(costoPizza + costoExtras)
     });
   }
 
@@ -76,6 +79,7 @@ const FormDisabledDemo = () => {
 
         <Form.Item label="Nombre" name="Nombre" onChange={(e) => {
           setNombre(e.target.value)
+          ActualizarData()
         }} rules={[
           {
             required: true,
@@ -88,7 +92,10 @@ const FormDisabledDemo = () => {
             required: true,
           },
         ]}>
-          <Select onChange={(e) => setTipoPizza(e)}>
+          <Select onChange={(e) => {
+            setTipoPizza(e)
+            ActualizarData()
+          }}>
             {pizzas.map(e => (
               <Select.Option value={e.nombre}>{e.nombre}</Select.Option>
             ))}
@@ -105,7 +112,10 @@ const FormDisabledDemo = () => {
             <Row>
               {ingredientes.map(e => (
                 <Col span={8}>
-                  <Checkbox value={e} onChange={(event) => AgregadoIngrediente(event)}>{e}</Checkbox>
+                  <Checkbox value={e} onChange={(event) => {
+                    AgregadoIngrediente(event)
+                    ActualizarData()
+                  }}>{e}</Checkbox>
                 </Col>
               ))}
             </Row>
