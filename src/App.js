@@ -7,7 +7,8 @@ import {
   Select,
   Col,
   Row,
-  Typography
+  Typography,
+  Space
 } from 'antd';
 import { pizzas, ingredientes } from './utils/data';
 
@@ -58,25 +59,19 @@ const FormDisabledDemo = () => {
 
   return (
     <>
-      <center>
-        <Title>Pizzeria de "La Italiana"</Title>
-      </center>
+     <Space direction="horizontal" style={{ width: '100%', justifyContent: 'center' }}>
       <Form
         form={form}
         name="control-ref"
-        labelCol={{
-          span: 4,
-        }}
-        wrapperCol={{
-          span: 14,
-        }}
         layout="horizontal"
-        disabled={false}
         style={{
-          maxWidth: 600,
-        }}
+          maxWidth: 700
+        }
+        }
       >
-
+ <center>
+        <Title>Pizzeria La Italiana</Title>
+      </center>
         <Form.Item label="Nombre" name="Nombre" onChange={(e) => {
           setNombre(e.target.value)
           ActualizarData()
@@ -126,23 +121,11 @@ const FormDisabledDemo = () => {
         <Form.Item label="Cotizar" htmlType="submit">
           <Button onClick={() => CalcularTotalPagar()}>Comprar</Button>
         </Form.Item>
-      </Form>
+     
       <center>
         <Title>Detalle Factura:</Title>
       </center>
 
-      <Form
-        labelCol={{
-          span: 4,
-        }}
-        wrapperCol={{
-          span: 14,
-        }}
-        layout="horizontal"
-        disabled={false}
-        style={{
-          maxWidth: 600,
-        }}>
         <Form.Item>
           <Form.Item label="Nombre">
             <Input placeholder={nombre} disabled />
@@ -173,9 +156,8 @@ const FormDisabledDemo = () => {
           </Form.Item>
 
         </Form.Item>
-      </Form>
-
-
+        </Form>
+      </Space>
     </>
   );
 };
